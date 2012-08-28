@@ -149,7 +149,6 @@ public class MobilityMapActivity extends MapActivity {
         default:
           super.handleMessage(msg);
       }
-
     }
   });
 

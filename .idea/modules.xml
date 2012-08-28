@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FunfLibrary/FunfLibrary.iml" filepath="$PROJECT_DIR$/FunfLibrary/FunfLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/GraphHopper/GraphHopper.iml" filepath="$PROJECT_DIR$/GraphHopper/GraphHopper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HopperProbe/HopperProbe.iml" filepath="$PROJECT_DIR$/HopperProbe/HopperProbe.iml" />
       <module fileurl="file://$PROJECT_DIR$/MapAwareMobility/MapAwareMobility.iml" filepath="$PROJECT_DIR$/MapAwareMobility/MapAwareMobility.iml" />
       <module fileurl="file://$PROJECT_DIR$/NearbyPlacesProbe/NearbyPlacesProbe.iml" filepath="$PROJECT_DIR$/NearbyPlacesProbe/NearbyPlacesProbe.iml" />
       <module fileurl="file://$PROJECT_DIR$/Pact/Pact.iml" filepath="$PROJECT_DIR$/Pact/Pact.iml" />
