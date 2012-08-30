@@ -53,6 +53,16 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../libs/gson-1.7.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="PactLibrary" />
   </component>
 </module>
 

@@ -1,4 +1,4 @@
-package edu.ucla.pact.mobility;
+package edu.ucla.nesl.pact.library;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -19,25 +18,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author Kasturi Rangan Raghavan (kastur@gmail.com)
  */
-public class GraphHopperConnection {
+public class GraphHopperClient {
 
-  private static final String TAG = "GraphHopperConnection";
-
+  private static final String TAG = "GraphHopperClient";
   private static final String GRAPH_HOPPER_SERVICE = "edu.ucla.nesl.pact.LocationRouteService";
-
-
-  public static final int MSG_ROUTE = 0;
-  public static final int MSG_LOOKUP_LOCATION = 1;
-  public static final int MSG_LOOKUP_NODES = 2;
-
-  public static final int MSG_CONNECTED = 3;
-  public static final int MSG_DISCONNECTED = 4;
 
   Context mContext;
   Messenger mService;
   Messenger mClient;
 
-  public GraphHopperConnection(Context context, Messenger client) {
+  public GraphHopperClient(Context context, Messenger client) {
     mContext = context;
     mClient = client;
   }
@@ -55,6 +45,7 @@ public class GraphHopperConnection {
     if (mConnected.get()) {
       mContext.unbindService(mServiceConnection);
     }
+    // TODO: Destroy the GraphHopper and NearbyPlaces instances properly.
   }
 
 
@@ -64,7 +55,7 @@ public class GraphHopperConnection {
       mService = new Messenger(binder);
       mConnected.set(true);
       try {
-        mClient.send(Message.obtain(null, MSG_CONNECTED));
+        mClient.send(Message.obtain(null, Messages.MSG_GRAPH_HOPPER_CONNECTED));
       } catch (RemoteException ex) {
         Log.e(TAG, "RemoteException!");
       }
@@ -74,7 +65,7 @@ public class GraphHopperConnection {
     public void onServiceDisconnected(ComponentName componentName) {
       mConnected.set(false);
       try {
-        mClient.send(Message.obtain(null, MSG_DISCONNECTED));
+        mClient.send(Message.obtain(null, Messages.MSG_GRAPH_HOPPER_DISCONNECTED));
       } catch (RemoteException ex) {
         Log.e(TAG, "RemoteException!");
       }
@@ -91,20 +82,22 @@ public class GraphHopperConnection {
     data.putDouble("fromLon", fromLon);
     data.putDouble("toLat", toLat);
     data.putDouble("toLon", toLon);
-    trySendMessage(MSG_ROUTE, data);
+    trySendMessage(Messages.MSG_ASK_FOR_ROUTE, data);
   }
 
-  public void askForNodeId(double lat, double lon) {
+  public void queryRouteNodeNearLocation(double lat, double lon) {
     Bundle data = new Bundle();
-    data.putDouble("lat", lat);
-    data.putDouble("lon", lon);
-    trySendMessage(MSG_LOOKUP_LOCATION, data);
+    data.putDouble(Messages.LAT_KEY, lat);
+    data.putDouble(Messages.LON_KEY, lon);
+    trySendMessage(Messages.MSG_QUERY_ROUTE_NODE_NEAR_LOCATOIN, data);
   }
 
-  public void askForLocations(ArrayList<Integer> nodes) {
+  public void queryNearbyPlacesNearLocation(double lat, double lon, double radius) {
     Bundle data = new Bundle();
-    data.putIntegerArrayList("nodes", nodes);
-    trySendMessage(MSG_LOOKUP_NODES, data);
+    data.putDouble(Messages.LAT_KEY, lat);
+    data.putDouble(Messages.LON_KEY, lon);
+    data.putDouble(Messages.RADIUS_METERS_KEY, radius);
+    trySendMessage(Messages.MSG_QUERY_NEARBY_PLACES_FOR_LOCATION, data);
   }
 
   private void trySendMessage(int what, Bundle data) {
@@ -117,5 +110,4 @@ public class GraphHopperConnection {
       Log.e(TAG, "RemoteException: trying to send request to location router.");
     }
   }
-
 }

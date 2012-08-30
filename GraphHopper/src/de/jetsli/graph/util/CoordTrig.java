@@ -15,12 +15,14 @@
  */
 package de.jetsli.graph.util;
 
+import android.os.Parcelable;
+
 /**
  * Double precision coordinates without an associated value. To add one - subclass.
  *
  * @author Peter Karich, info@jetsli.de
  */
-public class CoordTrig<T> {
+public class CoordTrig<T> implements Parcelable {
 
   public double lat;
   public double lon;

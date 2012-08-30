@@ -11,6 +11,8 @@
       <directory url="file://$PROJECT_DIR$/GraphHopper/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/GraphHopper/tests/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/MapAwareMobility/gen" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/VisitPredictorProbe/gen" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/PactLibrary/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

@@ -41,7 +41,7 @@ public class LocationRouteActivity extends Activity {
       }
     });
     mConnected = new AtomicBoolean(false);
-    Intent intent = new Intent(this, LocationRouteService.class);
+    Intent intent = new Intent(this, GraphHopperService.class);
     bindService(intent, mServiceConnection, BIND_AUTO_CREATE | BIND_DEBUG_UNBIND);
   }
 
@@ -83,7 +83,7 @@ public class LocationRouteActivity extends Activity {
     data.putDouble("fromLon", fromLon);
     data.putDouble("toLat", toLat);
     data.putDouble("toLon", toLon);
-    Message msg = Message.obtain(null, LocationRouteService.MSG_ROUTE);
+    Message msg = Message.obtain(null, GraphHopperService.MSG_ROUTE);
     msg.setData(data);
     msg.replyTo = mMessenger;
     try {
@@ -97,7 +97,7 @@ public class LocationRouteActivity extends Activity {
     @Override
     public void handleMessage(Message msg) {
       switch (msg.what) {
-        case LocationRouteService.MSG_ROUTE:
+        case GraphHopperService.MSG_ROUTE:
           Bundle data = msg.getData();
           int[] nodes = data.getIntArray("nodes");
           double[] lats = data.getDoubleArray("latitudes");

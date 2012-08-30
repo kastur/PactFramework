@@ -20,7 +20,7 @@
         <option name="RUN_PROCESS_RESOURCES_MAVEN_TASK" value="true" />
         <option name="GENERATE_UNSIGNED_APK" value="false" />
         <option name="CUSTOM_DEBUG_KEYSTORE_PATH" value="" />
-        <option name="PACK_TEST_CODE" value="true" />
+        <option name="PACK_TEST_CODE" value="false" />
         <option name="RUN_PROGUARD" value="false" />
         <option name="PROGUARD_CFG_PATH" value="/proguard-project.txt" />
         <resOverlayFolders>
@@ -36,20 +36,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../libs/gson-1.7.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module" module-name="FunfLibrary" scope="PROVIDED" />
+    <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../libs/openmap.jar!/" />
@@ -58,9 +49,16 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="FunfLibrary" />
-    <orderEntry type="module" module-name="NearbyPlacesProbe" />
-    <orderEntry type="module" module-name="PactLibrary" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../libs/gson-1.7.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="PactLibrary" scope="PROVIDED" />
   </component>
 </module>
 

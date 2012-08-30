@@ -15,6 +15,8 @@
  */
 package de.jetsli.graph.util;
 
+import android.os.Parcel;
+
 /**
  * @author Peter Karich, info@jetsli.de
  */
@@ -43,5 +45,17 @@ public class CoordTrigObjEntry<T> extends CoordTrig<T> {
   @Override
   public String toString() {
     return super.toString() + " value:" + v;
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;  //To change body of implemented methods use File | Settings | File Templates.
+  }
+
+  @Override
+  public void writeToParcel(Parcel parcel, int flags) {
+    parcel.writeDouble(lat);
+    parcel.writeDouble(lon);
+    parcel.writeParcelable(v, flags);
   }
 }
